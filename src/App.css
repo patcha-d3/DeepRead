@@ -1,0 +1,967 @@
+.app {
+  min-height: 100vh;
+}
+
+.app-nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--blue-border);
+}
+
+.app-nav a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.app-nav a:hover {
+  background: var(--blue-light);
+}
+
+.app-nav a.active {
+  background: var(--blue-light);
+  font-weight: 600;
+}
+
+/* Screen layout */
+.screen {
+  min-height: calc(100vh - 48px - var(--safe-top) - var(--safe-bottom));
+  min-height: calc(100dvh - 48px - var(--safe-top) - var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: var(--blue);
+  color: #fff;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.header p {
+  font-size: 0.9rem;
+  opacity: 0.95;
+  margin-top: 0.5rem;
+}
+
+.header-small {
+  background: var(--card);
+  padding: 1rem 1.5rem;
+  padding-left: max(1.5rem, var(--safe-left));
+  padding-right: max(1.5rem, var(--safe-right));
+  border-bottom: 1px solid var(--blue-border);
+}
+
+.header-small button {
+  background: none;
+  border: none;
+  color: var(--blue);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.header-small h2 {
+  font-size: 1.25rem;
+}
+
+.main {
+  flex: 1;
+  padding: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Month nav */
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.month-nav button {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.month-nav h2 {
+  font-size: 1.35rem;
+}
+
+/* Calendar grid */
+.calendar-grid {
+  margin-bottom: 1rem;
+}
+
+.calendar-header-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.day-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.calendar-cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  background: var(--card);
+  border: 1px solid var(--blue-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cell:hover {
+  border-color: var(--blue);
+}
+
+.cell-empty {
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+}
+
+.day-num {
+  font-size: 0.65rem;
+  color: var(--text-light);
+}
+
+.day-thumb {
+  width: 100%;
+  max-height: 50%;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+/* เมื่อมีภาพปก: ให้เต็มช่อง */
+.cell-has-cover {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.cell-has-cover .day-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  border-radius: inherit;
+}
+
+.cell-has-cover .day-num {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  align-self: flex-start;
+  margin: 4px;
+}
+
+.day-dot {
+  font-size: 0.6rem;
+  color: var(--blue);
+  margin-top: 2px;
+}
+
+/* CTA */
+.cta {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.cta:hover {
+  opacity: 0.95;
+}
+
+.cta-add-book {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Forms */
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--blue-border);
+  border-radius: 12px;
+  background: #f8fafc;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  font-family: inherit;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.95;
+}
+
+.btn-primary:disabled {
+  background: #a0b8d8;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  padding: 1rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.btn-outline:hover {
+  background: var(--blue-light);
+}
+
+.btn-ghost {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Progress bar */
+.progress-bar {
+  margin: 0.75rem 0;
+}
+
+.progress-track {
+  height: 8px;
+  background: var(--blue-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Mood selector */
+.mood-selector {
+  margin: 1rem 0;
+}
+
+.mood-label {
+  margin-bottom: 0.5rem !important;
+}
+
+.mood-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mood-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border: 2px solid transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.mood-btn:hover {
+  background: var(--blue-light);
+}
+
+.mood-btn.selected {
+  background: var(--blue-light);
+  border-color: var(--blue);
+}
+
+/* Book select chips */
+.book-select label {
+  margin-bottom: 0.5rem;
+}
+
+.book-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: var(--blue-light);
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+.chip-add {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 2px dashed var(--blue);
+  background: transparent;
+  color: var(--blue);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Book search results */
+.search-status {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: -0.5rem 0 0.75rem;
+}
+
+.search-error {
+  font-size: 0.9rem;
+  color: #c53030;
+  margin: -0.5rem 0 0.75rem;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.search-result-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--card);
+  border: 1px solid var(--blue-border);
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.search-result-card:hover {
+  border-color: var(--blue);
+}
+
+.search-result-card img {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--blue-light);
+}
+
+.search-result-card div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.search-result-card strong {
+  font-size: 0.95rem;
+}
+
+.search-result-card span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.add-book-divider {
+  border: none;
+  border-top: 1px solid var(--blue-border);
+  margin: 1.25rem 0 1rem;
+}
+
+/* Log screen */
+.log-screen .main {
+  padding-bottom: 2rem;
+}
+
+.log-book-header {
+  margin-bottom: 1rem;
+}
+
+.log-book-header img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--blue-light);
+}
+
+.log-book-header h2 {
+  margin-top: 0.5rem;
+}
+
+.log-book-header span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Log card */
+.log-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.log-card-header {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.log-card-cover {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.log-card-meta h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.log-pages {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.log-mood {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  display: block;
+}
+
+.log-reflection {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.log-quote {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--blue);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state .hint {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+/* Book list */
+.book-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.book-card-wrap {
+  flex: 0 0 140px;
+  position: relative;
+}
+
+.book-card {
+  width: 100%;
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.book-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.book-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  background: var(--blue-light);
+}
+
+.book-card-meta {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.book-card-meta span:first-child {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.book-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.book-delete:hover {
+  background: #dc3545;
+}
+
+.badge.done {
+  color: #28a745;
+}
+
+/* Book detail */
+.book-cover {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--blue-light);
+  margin-bottom: 1rem;
+}
+
+.author {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+section {
+  margin-top: 1.5rem;
+}
+
+section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Summary */
+.summary-main h2 {
+  margin-bottom: 0.25rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.mood-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mood-chip {
+  background: var(--card);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.ref-card, .quote-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.ref-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.ref-pages {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ref-card blockquote {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--blue);
+}
+
+.quote-date {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* ========================================
+   RESPONSIVE: iPhone 17 (~393px) - iPad (~1024px+)
+   ======================================== */
+
+/* iPhone / Small phones: < 430px */
+@media (max-width: 429px) {
+  .app-nav {
+    padding: 0.75rem 1rem;
+    padding-left: max(1rem, var(--safe-left));
+    padding-right: max(1rem, var(--safe-right));
+  }
+  .main {
+    padding: 1rem;
+    padding-left: max(1rem, var(--safe-left));
+    padding-right: max(1rem, var(--safe-right));
+  }
+  .header {
+    padding: 1.25rem 1rem;
+    padding-left: max(1rem, var(--safe-left));
+  }
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  .cell {
+    min-height: 36px;
+    border-radius: 8px;
+    padding-top: 2px;
+  }
+  .day-label {
+    font-size: 0.6rem;
+  }
+  .day-num {
+    font-size: 0.55rem;
+  }
+  .day-thumb {
+    max-height: 40%;
+  }
+  .month-nav h2 {
+    font-size: 1.15rem;
+  }
+  .book-card-wrap {
+    flex: 0 0 120px;
+  }
+}
+
+/* Touch targets: min 44px สำหรับ accessibility */
+@media (pointer: coarse) {
+  .month-nav button {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.5rem;
+  }
+  .cell {
+    min-width: 36px;
+    min-height: 36px;
+  }
+  .mood-btn {
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .chip, .chip-add {
+    min-height: 44px;
+    padding: 0.6rem 1rem;
+  }
+  .app-nav a {
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* iPad / Tablet: 768px+ */
+@media (min-width: 768px) {
+  .app {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .app-nav {
+    padding: 1rem 2rem;
+    border-radius: 0;
+  }
+  .main {
+    padding: 1.5rem 2rem;
+    max-width: 800px;
+  }
+  .header {
+    padding: 2rem;
+    border-radius: 0 0 20px 20px;
+  }
+  .header h1 {
+    font-size: 2rem;
+  }
+  .header p {
+    font-size: 1rem;
+  }
+  .calendar-cells {
+    gap: 6px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cell {
+    aspect-ratio: 1;
+    max-width: 70px;
+    border-radius: 14px;
+    min-height: 56px;
+  }
+  .day-thumb {
+    max-height: 55%;
+  }
+  .day-label {
+    font-size: 0.75rem;
+  }
+  .day-num {
+    font-size: 0.7rem;
+  }
+  .month-nav h2 {
+    font-size: 1.5rem;
+  }
+  .cta {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem;
+    font-size: 1.15rem;
+  }
+  .book-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.25rem;
+    overflow: visible;
+  }
+  .book-card-wrap {
+    flex: none;
+  }
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 500px;
+  }
+  .log-card {
+    padding: 1.25rem;
+  }
+}
+
+/* iPad Pro / Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  body {
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+  }
+  .app {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .main {
+    max-width: 900px;
+    padding: 2rem 2.5rem;
+  }
+  .calendar-grid {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .calendar-cells {
+    max-width: 700px;
+    gap: 8px;
+  }
+  .cell {
+    max-width: 80px;
+    min-height: 64px;
+  }
+  .book-row {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+  .log-book-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1.5rem;
+  }
+  .log-book-header img {
+    max-height: 280px;
+  }
+}
+
+/* Landscape mobile: ปรับ calendar ให้พอดี */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    padding: 1rem;
+  }
+  .header h1 {
+    font-size: 1.25rem;
+  }
+  .main {
+    padding: 1rem;
+  }
+  .cell {
+    min-height: 32px;
+  }
+}

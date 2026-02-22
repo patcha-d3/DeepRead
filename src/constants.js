@@ -1,0 +1,3 @@
+// Placeholder ใช้ data URI เพื่อให้โหลดได้เสมอ (ไม่พึ่ง external URL)
+export const PLACEHOLDER_SM = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='64'%3E%3Crect fill='%23E8EEF4' width='48' height='64'/%3E%3Ctext x='24' y='38' fill='%23666' font-size='20' text-anchor='middle'%3E?%3C/text%3E%3C/svg%3E";
+export const PLACEHOLDER_MD = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='280'%3E%3Crect fill='%23E8EEF4' width='200' height='280'/%3E%3Ctext x='100' y='150' fill='%23666' font-size='64' text-anchor='middle'%3E?%3C/text%3E%3C/svg%3E";
