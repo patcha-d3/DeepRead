@@ -1,4 +1,4 @@
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAYS = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
 
 export default function CalendarGrid({ year, month, logsByDate, onSelectDate }) {
   const first = new Date(year, month - 1, 1);

@@ -1,3 +1,22 @@
+/* Gelica font – add woff2 to public/fonts/ (download from FontSpace/fontspring demo) */
+@font-face {
+  font-family: 'Gelica';
+  src: url('/fonts/Gelica-Regular.woff2') format('woff2'),
+       url('/fonts/Gelica-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gelica';
+  src: url('/fonts/Gelica-SemiBold.woff2') format('woff2'),
+       url('/fonts/Gelica-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,13 +25,17 @@
 
 :root {
   --blue: #4169E1;
-  --blue-light: #E0E8F5;
-  --blue-border: #D0E0F0;
-  --bg: #F5F7FA;
+  --blue-light: #E8E8E8;
+  --blue-border: #D4D4D4;
+  /* Monochromatic palette for Home/My Books mockup */
+  --bg: #E8E8E8;
   --card: #fff;
   --text: #1a1a1a;
   --text-muted: #666;
   --text-light: #888;
+  /* Typography: Gelica (headings, buttons) | Inter (body, labels) */
+  --font-heading: 'Gelica', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   /* Safe area for iPhone notch */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -27,7 +50,7 @@ html {
 
 body {
   overflow-x: hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-body);
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
@@ -35,13 +58,32 @@ body {
   padding-bottom: var(--safe-bottom);
 }
 
-h1, h2 {
-  font-family: 'DM Serif Display', Georgia, serif;
+/* Gelica: headings + buttons */
+h1, h2, h3, h4, h5, h6,
+button,
+.cta,
+.btn-primary,
+.btn-outline,
+.splash-cta,
+.login-continue,
+.streak-num,
+.streak-label {
+  font-family: var(--font-heading);
+}
+
+/* Inter: body, label, inputs */
+body,
+label,
+input,
+textarea,
+p,
+span,
+.nav-label {
+  font-family: var(--font-body);
 }
 
 button {
   cursor: pointer;
-  font-family: inherit;
 }
 
 /* Touch tap highlight */
