@@ -1,6 +1,6 @@
 # DeepRead
 
-A reflection logging companion for readers. **DeepRead is NOT a reading app** — it lets you log reading progress, record daily reflections, and compile logs when a book is finished.
+A reflection logging companion for readers. **DeepRead is NOT a reading app**, it lets you log reading progress, record daily reflections, and compile logs when a book is finished.
 
 ## Stack
 
