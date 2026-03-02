@@ -1,3 +1,5 @@
+import './ReadingStatsScreen.css';
+
 /**
  * Reading Stats - 2nd phase (IA)
  * Sections: Reading Trend, Heat map, Reading Total
@@ -7,7 +9,7 @@ export default function ReadingStatsScreen() {
     <div className="screen stats-screen">
       <header className="journey-header">
         <div>
-          <h1>Reading Stats</h1>
+          <h1>Reading<br />Stats</h1>
           <p className="phase-badge">Coming in Phase 2</p>
         </div>
       </header>

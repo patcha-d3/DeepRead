@@ -1,0 +1,53 @@
+/* Log card */
+.log-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.log-card-header {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.log-card-cover {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.log-card-meta h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.log-pages {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.log-mood {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  display: block;
+}
+
+.log-reflection {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.log-quote {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--blue);
+}

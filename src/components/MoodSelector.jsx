@@ -1,3 +1,5 @@
+import './MoodSelector.css';
+
 const MOODS = [
   { emoji: '😊', value: 'happy' },
   { emoji: '😐', value: 'neutral' },

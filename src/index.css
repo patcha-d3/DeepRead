@@ -28,11 +28,12 @@
   --blue-light: #E8E8E8;
   --blue-border: #D4D4D4;
   /* Monochromatic palette for Home/My Books mockup */
-  --bg: #E8E8E8;
+  --bg: #ffffff;
   --card: #fff;
   --text: #1a1a1a;
   --text-muted: #666;
   --text-light: #888;
+  --text-streak: var(--blue);
   /* Typography: Gelica (headings, buttons) | Inter (body, labels) */
   --font-heading: 'Gelica', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,6 +47,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+
 }
 
 body {

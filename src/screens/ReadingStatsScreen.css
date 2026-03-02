@@ -1,0 +1,29 @@
+/* Reading Stats screen */
+.stats-screen .phase-badge {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.stats-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stats-placeholder-card {
+  background: var(--card);
+  border: 1px dashed var(--blue-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.stats-placeholder-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats-placeholder-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}

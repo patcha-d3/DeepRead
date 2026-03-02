@@ -1,3 +1,5 @@
+import './CalendarGrid.css';
+
 const DAYS = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
 
 export default function CalendarGrid({ year, month, logsByDate, onSelectDate }) {

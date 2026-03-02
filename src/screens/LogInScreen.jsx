@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LogInScreen.css';
 
 export default function LogInScreen() {
   const nav = useNavigate();

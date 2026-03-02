@@ -1,0 +1,25 @@
+/* Progress bar */
+.progress-bar {
+  margin: 0.75rem 0;
+}
+
+.progress-track {
+  height: 8px;
+  background: var(--blue-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  display: block;
+}

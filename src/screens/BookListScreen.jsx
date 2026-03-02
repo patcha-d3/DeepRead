@@ -1,21 +1,42 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PLACEHOLDER_MD } from '../constants';
-import { getBooks, deleteBook } from '../store/db';
+import './BookListScreen.css';
+import { getBooks, deleteBook, getCurrentPageForBook } from '../store/db';
 
-function pct(b) {
-  const total = b.totalPages || 1;
-  const at = b.currentPage || 0;
-  return Math.round((at / total) * 100);
+const FILTER_OPTIONS = [
+  { value: 'all', label: 'All books' },
+  { value: 'reading', label: 'Currently reading' },
+  { value: 'finished', label: 'Finished' },
+];
+
+function getProgress(b) {
+  const total = Math.max(1, Number(b.totalPages) || 1);
+  const current = getCurrentPageForBook(b.id);
+  const effectiveTotal = Math.max(total, current);
+  const pct = effectiveTotal > 0 ? Math.min(100, (current / effectiveTotal) * 100) : 0;
+  return { current, total: effectiveTotal, pct: Math.round(pct) };
 }
 
 export default function BookListScreen() {
   const nav = useNavigate();
   const [books, setBooks] = useState([]);
-  const [filter, setFilter] = useState('reading'); // 'reading' | 'all'
+  const [filter, setFilter] = useState('all'); // 'all' | 'reading' | 'finished'
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const load = useCallback(() => setBooks(getBooks()), []);
   useEffect(() => { load(); }, [load]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const reading = books.filter((b) => b.status === 'reading');
   const finished = books.filter((b) => b.status === 'finished');
@@ -26,26 +47,59 @@ export default function BookListScreen() {
 
   const handleDelete = (e, b) => {
     e.stopPropagation();
-    if (window.confirm(`ลบ "${b.title}" ใช่ไหม? จะลบ log ทั้งหมดของหนังสือเล่มนี้ด้วย`)) {
+    if (window.confirm(`Delete "${b.title}"? This will also remove all reading logs for this book.`)) {
       deleteBook(b.id);
       load();
     }
   };
 
+  const currentFilterLabel = FILTER_OPTIONS.find((o) => o.value === filter)?.label || 'All books';
+
   return (
     <div className="screen books-screen">
       <header className="journey-header">
-        <h1>My Books</h1>
-        <button type="button" className="all-books-btn" onClick={() => setFilter(filter === 'all' ? 'reading' : 'all')}>
-          All Books
-        </button>
+        <h1>My<br />Books</h1>
+        <div className="filter-dropdown-wrap" ref={dropdownRef}>
+          <button
+            type="button"
+            className="filter-dropdown-btn"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            aria-expanded={dropdownOpen}
+            aria-haspopup="listbox"
+          >
+            {currentFilterLabel}
+            <span className="filter-dropdown-chevron">▼</span>
+          </button>
+          {dropdownOpen && (
+            <ul className="filter-dropdown-menu" role="listbox">
+              {FILTER_OPTIONS.map((opt) => (
+                <li key={opt.value}>
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={filter === opt.value}
+                    className={`filter-dropdown-item ${filter === opt.value ? 'active' : ''}`}
+                    onClick={() => {
+                      setFilter(opt.value);
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </header>
       <main className="main main-books">
-        {reading.length > 0 && (
+        {(filter === 'all' || filter === 'reading') && reading.length > 0 && (
           <section className="books-section">
             <h3>Currently Reading</h3>
-            <div className="book-row book-cards-mockup">
-              {reading.map((b) => (
+            <div className="book-cards-mockup">
+              {reading.map((b) => {
+                const p = getProgress(b);
+                return (
                 <div key={b.id} className="book-card-wrap-mockup">
                   <button type="button" className="book-card-mockup" onClick={() => goTo(b)}>
                     <img src={b.coverUrl || PLACEHOLDER_MD} alt="" referrerPolicy="no-referrer" className="book-cover-grayscale" />
@@ -54,22 +108,23 @@ export default function BookListScreen() {
                       <span className="book-author-mockup">{b.author || 'Author'}</span>
                       <div className="book-progress-mockup">
                         <div className="progress-track-mockup">
-                          <div className="progress-fill-mockup" style={{ width: `${pct(b)}%` }} />
+                          <div className="progress-fill-mockup" style={{ width: `${p.pct}%` }} />
                         </div>
-                        <span className="progress-pct">{pct(b)}% Read</span>
+                        <span className="progress-pct">{p.pct}% Read</span>
                       </div>
                     </div>
                   </button>
-                  <button type="button" className="book-delete" onClick={(e) => handleDelete(e, b)} aria-label="ลบหนังสือ">×</button>
+                  <button type="button" className="book-delete" onClick={(e) => handleDelete(e, b)} aria-label="Delete book">×</button>
                 </div>
-              ))}
+              );
+              })}
             </div>
           </section>
         )}
-        {filter === 'all' && finished.length > 0 && (
+        {(filter === 'all' || filter === 'finished') && finished.length > 0 && (
           <section className="books-section">
             <h3>Finished</h3>
-            <div className="book-row book-cards-mockup">
+            <div className="book-cards-mockup">
               {finished.map((b) => (
                 <div key={b.id} className="book-card-wrap-mockup">
                   <button type="button" className="book-card-mockup" onClick={() => goTo(b)}>
@@ -80,7 +135,7 @@ export default function BookListScreen() {
                       <span className="book-badge-finished">Finished</span>
                     </div>
                   </button>
-                  <button type="button" className="book-delete" onClick={(e) => handleDelete(e, b)} aria-label="ลบหนังสือ">×</button>
+                  <button type="button" className="book-delete" onClick={(e) => handleDelete(e, b)} aria-label="Delete book">×</button>
                 </div>
               ))}
             </div>
@@ -90,6 +145,16 @@ export default function BookListScreen() {
           <div className="empty-state">
             <p>No books yet.</p>
             <p className="hint">Add a book when you create your first reflection.</p>
+          </div>
+        )}
+        {books.length > 0 && filter === 'reading' && reading.length === 0 && (
+          <div className="empty-state">
+            <p>No books currently reading.</p>
+          </div>
+        )}
+        {books.length > 0 && filter === 'finished' && finished.length === 0 && (
+          <div className="empty-state">
+            <p>No finished books yet.</p>
           </div>
         )}
       </main>

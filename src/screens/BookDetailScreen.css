@@ -1,0 +1,23 @@
+/* Book detail screen */
+.book-cover {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: var(--blue-light);
+  margin-bottom: 1rem;
+}
+
+.author {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+section {
+  margin-top: 1.5rem;
+}
+
+section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}

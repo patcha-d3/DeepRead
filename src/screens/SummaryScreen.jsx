@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { getBook, getLogsByBook } from '../store/db';
+import './SummaryScreen.css';
 import { aggregateLogs } from '../utils/aggregateLogs';
 
 export default function SummaryScreen() {

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ProgressBar from '../components/ProgressBar';
+import './BookDetailScreen.css';
 import LogCard from '../components/LogCard';
 import { PLACEHOLDER_MD } from '../constants';
-import { getBook, getLogsByBook, markBookFinished } from '../store/db';
+import { getBook, getLogsByBook, getCurrentPageForBook, markBookFinished } from '../store/db';
 
 export default function BookDetailScreen() {
   const nav = useNavigate();
@@ -37,7 +38,7 @@ export default function BookDetailScreen() {
         <img src={book.coverUrl || PLACEHOLDER_MD} alt="" className="book-cover" referrerPolicy="no-referrer" />
         <h2>{book.title}</h2>
         {book.author && <p className="author">by {book.author}</p>}
-        <ProgressBar currentPage={book.currentPage} totalPages={book.totalPages} />
+        <ProgressBar currentPage={getCurrentPageForBook(book.id)} totalPages={book.totalPages} />
         <button className="btn-primary" onClick={() => nav('/log', { state: { bookId: book.id, date: today } })}>
           Add reflection
         </button>

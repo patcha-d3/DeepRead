@@ -1,0 +1,44 @@
+/* Calendar / Journey screen */
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.month-nav button {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.month-nav h2 {
+  font-size: 1.35rem;
+  font-family: var(--font-body);
+  color: var(--text);
+}
+
+.cta {
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background: #333;
+}
+
+.cta-add-book {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}

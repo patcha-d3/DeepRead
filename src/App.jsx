@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SplashScreen from './screens/SplashScreen';
 import LogInScreen from './screens/LogInScreen';
 import CalendarScreen from './screens/CalendarScreen';
@@ -8,23 +8,14 @@ import BookListScreen from './screens/BookListScreen';
 import BookDetailScreen from './screens/BookDetailScreen';
 import SummaryScreen from './screens/SummaryScreen';
 import ReadingStatsScreen from './screens/ReadingStatsScreen';
+import BottomNav from './components/BottomNav';
 import './App.css';
 
 function AppLayout({ children }) {
   return (
     <div className="app-layout">
       <div className="app-content">{children}</div>
-      <nav className="bottom-nav">
-        <NavLink to="/home" end className={({ isActive }) => isActive ? 'active' : ''}>
-          <span className="nav-label">Home</span>
-        </NavLink>
-        <NavLink to="/books" className={({ isActive }) => isActive ? 'active' : ''}>
-          <span className="nav-label">My Books</span>
-        </NavLink>
-        <NavLink to="/stats" className={({ isActive }) => isActive ? 'active' : ''}>
-          <span className="nav-label">Reading Stats</span>
-        </NavLink>
-      </nav>
+      <BottomNav />
     </div>
   );
 }

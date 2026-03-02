@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CalendarGrid from '../components/CalendarGrid';
+import './CalendarScreen.css';
 import { getLogsForMonth } from '../store/db';
 import { getReadingStreak } from '../utils/readingStreak';
 
@@ -39,7 +40,7 @@ export default function CalendarScreen() {
   return (
     <div className="screen journey-screen">
       <header className="journey-header">
-        <h1>Reading Journey</h1>
+        <h1>Reading<br />Journey</h1>
         <div className="streak-badge">
           <span className="streak-num">{streak}</span>
           <span className="streak-label">day streak</span>

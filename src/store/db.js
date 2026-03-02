@@ -43,11 +43,12 @@ export function getBook(bookId) {
 export function createBook({ title, author, totalPages, coverUrl, isbn }) {
   const books = loadBooks();
   const id = Math.max(0, ...books.map((b) => b.id)) + 1;
+  const pages = Math.max(1, Number(totalPages) || 1);
   books.push({
     id,
     title,
     author: author || '',
-    totalPages,
+    totalPages: pages,
     status: 'reading',
     currentPage: 0,
     coverUrl: coverUrl || null,
@@ -99,6 +100,16 @@ export function getLogsByDate(date) {
 export function getLastLogForBook(bookId) {
   const logs = getLogsByBook(bookId);
   return logs.length ? logs[logs.length - 1] : null;
+}
+
+/**
+ * Current page = furthest page reached (จาก logs)
+ * ใช้แทน book.currentPage เพื่อให้ถูกต้อง
+ */
+export function getCurrentPageForBook(bookId) {
+  const logs = getLogsByBook(bookId);
+  if (logs.length === 0) return 0;
+  return Math.max(...logs.map((l) => l.endPage));
 }
 
 export function createLog({ bookId, date, startPage, endPage, mood, reflection, quote }) {

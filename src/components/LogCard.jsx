@@ -1,4 +1,5 @@
 import { PLACEHOLDER_SM } from '../constants';
+import './LogCard.css';
 
 export default function LogCard({ log, book }) {
   const { startPage, endPage, mood, reflection, quote } = log;
