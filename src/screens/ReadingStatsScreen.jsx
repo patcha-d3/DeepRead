@@ -1,4 +1,5 @@
 import './ReadingStatsScreen.css';
+import InfoCard from '../components/InfoCard';
 
 /**
  * Reading Stats - 2nd phase (IA)
@@ -15,18 +16,21 @@ export default function ReadingStatsScreen() {
       </header>
       <main className="main">
         <div className="stats-placeholder">
-          <div className="stats-placeholder-card">
-            <h3>Reading Trend</h3>
-            <p>Track your reading habits over time</p>
-          </div>
-          <div className="stats-placeholder-card">
-            <h3>Heat map</h3>
-            <p>Visualize your reading activity</p>
-          </div>
-          <div className="stats-placeholder-card">
-            <h3>Reading Total</h3>
-            <p>Total books and pages read</p>
-          </div>
+          <InfoCard
+            className="stats-placeholder-card"
+            title="Reading Trend"
+            subtitle="Track your reading habits over time"
+          />
+          <InfoCard
+            className="stats-placeholder-card"
+            title="Heat map"
+            subtitle="Visualize your reading activity"
+          />
+          <InfoCard
+            className="stats-placeholder-card"
+            title="Reading Total"
+            subtitle="Total books and pages read"
+          />
         </div>
       </main>
     </div>

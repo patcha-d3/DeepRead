@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ProgressBar from '../components/ProgressBar';
+import Button from '../components/Button';
+import Chip from '../components/Chip';
 import './LogScreen.css';
 import MoodSelector from '../components/MoodSelector';
 import { searchBooks } from '../api/booksApi';
@@ -194,7 +196,15 @@ export default function LogScreen() {
                   <strong>{selectedFromSearch.title}</strong>
                   {selectedFromSearch.author && <span>{selectedFromSearch.author}</span>}
                 </div>
-                <button type="button" className="change-book-btn" onClick={() => setSelectedFromSearch(null)}>Change</button>
+              <Button
+                type="button"
+                as="button"
+                variant="ghost"
+                className="change-book-btn"
+                onClick={() => setSelectedFromSearch(null)}
+              >
+                Change
+              </Button>
               </div>
               <label>Total pages *</label>
               <input
@@ -204,7 +214,7 @@ export default function LogScreen() {
                 value={newTotalPages}
                 onChange={(e) => setNewTotalPages(e.target.value)}
               />
-              <button className="btn-primary" onClick={handleAddBook}>Add Book</button>
+              <Button variant="primary" onClick={handleAddBook}>Add Book</Button>
             </div>
           )}
           {!selectedFromSearch && (
@@ -230,10 +240,15 @@ export default function LogScreen() {
                 value={newTotalPages}
                 onChange={(e) => setNewTotalPages(e.target.value)}
               />
-              <button className="btn-primary" onClick={handleAddBook}>Add Book</button>
+              <Button variant="primary" onClick={handleAddBook}>Add Book</Button>
             </>
           )}
-          <button className="btn-ghost" onClick={() => loc.state?.fromBooks ? nav('/books') : setShowAddBook(false)}>Cancel</button>
+          <Button
+            variant="ghost"
+            onClick={() => (loc.state?.fromBooks ? nav('/books') : setShowAddBook(false))}
+          >
+            Cancel
+          </Button>
         </main>
       </div>
     );
@@ -258,18 +273,20 @@ export default function LogScreen() {
               <label>Select a book</label>
               <div className="book-chips">
                 {books.map((b) => (
-                  <button
+                  <Chip
                     key={b.id}
-                    type="button"
-                    className={`chip ${selectedBookId === b.id ? 'active' : ''}`}
+                    active={selectedBookId === b.id}
                     onClick={() => setSelectedBookId(b.id)}
                   >
                     {b.title}
-                  </button>
+                  </Chip>
                 ))}
-                <button type="button" className="chip-add" onClick={() => setShowAddBook(true)}>
+                <Chip
+                  variant="add"
+                  onClick={() => setShowAddBook(true)}
+                >
                   + Add book
-                </button>
+                </Chip>
               </div>
             </div>
           ) : (
@@ -305,13 +322,13 @@ export default function LogScreen() {
               placeholder="A memorable quote from your reading..."
               rows={2}
             />
-            <button
-              className="btn-primary"
+            <Button
+              variant="primary"
               onClick={handleSave}
               disabled={!isValid}
             >
               Save Reflection
-            </button>
+            </Button>
           </>
         )}
       </main>

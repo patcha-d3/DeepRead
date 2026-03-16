@@ -1,5 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { getBook, getLogsByBook } from '../store/db';
+import HeaderBack from '../components/HeaderBack';
+import StatCard from '../components/StatCard';
+import Chip from '../components/Chip';
+import InfoCard from '../components/InfoCard';
 import './SummaryScreen.css';
 import { aggregateLogs } from '../utils/aggregateLogs';
 
@@ -14,23 +18,23 @@ export default function SummaryScreen() {
 
   return (
     <div className="screen">
-      <header className="header-small">
-        <button type="button" onClick={() => nav(-1)}>‹ Back</button>
-      </header>
+      <HeaderBack onBack={() => nav(-1)} />
       <main className="main summary-main">
         <h2>{book.title}</h2>
         {book.author && <p className="author">by {book.author}</p>}
         <div className="stats">
-          <div className="stat-card"><span className="stat-value">{agg.totalSessions}</span><span className="stat-label">Total sessions</span></div>
-          <div className="stat-card"><span className="stat-value">{agg.totalPagesLogged}</span><span className="stat-label">Pages logged</span></div>
-          <div className="stat-card"><span className="stat-value">{agg.avgPagesPerSession}</span><span className="stat-label">Avg/session</span></div>
+          <StatCard label="Total sessions" value={agg.totalSessions} />
+          <StatCard label="Pages logged" value={agg.totalPagesLogged} />
+          <StatCard label="Avg/session" value={agg.avgPagesPerSession} />
         </div>
         {Object.keys(agg.moodFrequency).length > 0 && (
           <section>
             <h3>Mood breakdown</h3>
             <div className="mood-breakdown">
               {Object.entries(agg.moodFrequency).map(([m, count]) => (
-                <span key={m} className="mood-chip">{m} {count}</span>
+                <Chip key={m} variant="mood">
+                  {m} {count}
+                </Chip>
               ))}
             </div>
           </section>
@@ -39,12 +43,12 @@ export default function SummaryScreen() {
           <section>
             <h3>Reflection archive</h3>
             {agg.reflections.map((r, i) => (
-              <div key={i} className="ref-card">
+              <InfoCard key={i} className="ref-card">
                 <span className="ref-date">{r.date}</span>
                 <span className="ref-pages">Pages {r.startPage}–{r.endPage}</span>
                 {r.reflection && <p>{r.reflection}</p>}
                 {r.quote && <blockquote>&ldquo;{r.quote}&rdquo;</blockquote>}
-              </div>
+              </InfoCard>
             ))}
           </section>
         )}
@@ -52,10 +56,10 @@ export default function SummaryScreen() {
           <section>
             <h3>Collected quotes</h3>
             {agg.quotes.map((q, i) => (
-              <div key={i} className="quote-card">
+              <InfoCard key={i} className="quote-card">
                 <p>&ldquo;{q.quote}&rdquo;</p>
                 <span className="quote-date">{q.date}</span>
-              </div>
+              </InfoCard>
             ))}
           </section>
         )}

@@ -1,0 +1,49 @@
+.book-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: var(--blue-light);
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+.chip-add {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 2px dashed var(--blue);
+  background: transparent;
+  color: var(--blue);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mood-chip {
+  background: var(--card);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+@media (pointer: coarse) {
+  .chip,
+  .chip-add {
+    min-height: 44px;
+    padding: 0.6rem 1rem;
+  }
+}
+

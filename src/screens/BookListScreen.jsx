@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
+import EmptyState from '../components/EmptyState';
 import { PLACEHOLDER_MD } from '../constants';
 import './BookListScreen.css';
 import { getBooks, deleteBook, getCurrentPageForBook } from '../store/db';
@@ -60,8 +62,10 @@ export default function BookListScreen() {
       <header className="journey-header">
         <h1>My<br />Books</h1>
         <div className="filter-dropdown-wrap" ref={dropdownRef}>
-          <button
+          <Button
             type="button"
+            as="button"
+            variant="outline"
             className="filter-dropdown-btn"
             onClick={() => setDropdownOpen(!dropdownOpen)}
             aria-expanded={dropdownOpen}
@@ -69,7 +73,7 @@ export default function BookListScreen() {
           >
             {currentFilterLabel}
             <span className="filter-dropdown-chevron">▼</span>
-          </button>
+          </Button>
           {dropdownOpen && (
             <ul className="filter-dropdown-menu" role="listbox">
               {FILTER_OPTIONS.map((opt) => (
@@ -142,30 +146,28 @@ export default function BookListScreen() {
           </section>
         )}
         {books.length === 0 && (
-          <div className="empty-state">
-            <p>No books yet.</p>
-            <p className="hint">Add a book when you create your first reflection.</p>
-          </div>
+          <EmptyState
+            title="No books yet."
+            body="Add a book when you create your first reflection."
+          />
         )}
         {books.length > 0 && filter === 'reading' && reading.length === 0 && (
-          <div className="empty-state">
-            <p>No books currently reading.</p>
-          </div>
+          <EmptyState title="No books currently reading." />
         )}
         {books.length > 0 && filter === 'finished' && finished.length === 0 && (
-          <div className="empty-state">
-            <p>No finished books yet.</p>
-          </div>
+          <EmptyState title="No finished books yet." />
         )}
       </main>
-      <button
+      <Button
         type="button"
+        as="button"
+        variant="primary"
         className="fab-new-book"
         onClick={() => nav('/log', { state: { showAddBook: true, fromBooks: true } })}
         aria-label="Add new book"
       >
         + New Book
-      </button>
+      </Button>
     </div>
   );
 }

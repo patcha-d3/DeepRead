@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CalendarGrid from '../components/CalendarGrid';
+import CallToAction from '../components/CallToAction';
 import './CalendarScreen.css';
 import { getLogsForMonth } from '../store/db';
 import { getReadingStreak } from '../utils/readingStreak';
@@ -58,9 +59,9 @@ export default function CalendarScreen() {
           logsByDate={logsByDate}
           onSelectDate={(d) => nav(`/date/${d}`)}
         />
-        <button className="cta" onClick={() => nav('/log', { state: { date: today } })}>
+        <CallToAction onClick={() => nav('/log', { state: { date: today } })}>
           Reflect on today&apos;s reading
-        </button>
+        </CallToAction>
       </main>
     </div>
   );

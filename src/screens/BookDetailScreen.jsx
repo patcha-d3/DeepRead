@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ProgressBar from '../components/ProgressBar';
+import Button from '../components/Button';
 import './BookDetailScreen.css';
 import LogCard from '../components/LogCard';
 import { PLACEHOLDER_MD } from '../constants';
@@ -39,10 +40,18 @@ export default function BookDetailScreen() {
         <h2>{book.title}</h2>
         {book.author && <p className="author">by {book.author}</p>}
         <ProgressBar currentPage={getCurrentPageForBook(book.id)} totalPages={book.totalPages} />
-        <button className="btn-primary" onClick={() => nav('/log', { state: { bookId: book.id, date: today } })}>
+        <Button
+          variant="primary"
+          onClick={() => nav('/log', { state: { bookId: book.id, date: today } })}
+        >
           Add reflection
-        </button>
-        <button className="btn-outline" onClick={handleFinish}>Mark as Finished</button>
+        </Button>
+        <Button
+          variant="outline"
+          onClick={handleFinish}
+        >
+          Mark as Finished
+        </Button>
         {logs.length > 0 && (
           <section>
             <h3>Reading logs</h3>

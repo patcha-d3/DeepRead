@@ -1,0 +1,32 @@
+.cta {
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background: #333;
+}
+
+.cta-add-book {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cta {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.25rem;
+    font-size: 1.15rem;
+  }
+}
+

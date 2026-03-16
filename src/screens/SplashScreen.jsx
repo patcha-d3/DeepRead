@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 import './SplashScreen.css';
 
 export default function SplashScreen() {
@@ -13,9 +14,13 @@ export default function SplashScreen() {
           a reflective bookmark & reading journal app synchronized with Kobo
         </p>
       </div>
-      <button className="splash-cta" onClick={() => nav('/login')}>
+      <Button
+        variant="primary"
+        className="splash-cta"
+        onClick={() => nav('/login')}
+      >
         Sign In
-      </button>
+      </Button>
     </div>
   );
 }

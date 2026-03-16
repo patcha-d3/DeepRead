@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 import './LogInScreen.css';
 
 export default function LogInScreen() {
@@ -49,11 +50,21 @@ export default function LogInScreen() {
           By continuing you agree to the <strong>Terms of Use</strong> and <strong>Privacy Policy</strong>
         </p>
 
-        <button className="login-continue" onClick={handleContinue}>
+        <Button
+          variant="primary"
+          className="login-continue"
+          onClick={handleContinue}
+        >
           Continue
-        </button>
+        </Button>
 
-        <button type="button" className="login-link">Reset Password</button>
+        <Button
+          variant="ghost"
+          className="login-link"
+          type="button"
+        >
+          Reset Password
+        </Button>
 
         <p className="login-signup">
           No account? <strong>Create Account</strong>

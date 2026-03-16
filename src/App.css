@@ -98,26 +98,6 @@
   margin-top: 0.5rem;
 }
 
-.header-small {
-  background: var(--card);
-  padding: 1rem 1.5rem;
-  padding-left: max(1.5rem, var(--safe-left));
-  padding-right: max(1.5rem, var(--safe-right));
-}
-
-.header-small button {
-  background: none;
-  border: none;
-  color: var(--blue);
-  font-size: 1rem;
-  cursor: pointer;
-  margin-bottom: 0.5rem;
-}
-
-.header-small h2 {
-  font-size: 1.25rem;
-}
-
 .main {
   flex: 1;
   padding: 1.25rem;
@@ -214,23 +194,6 @@ textarea {
   margin-top: 0.5rem;
 }
 
-/* Empty state */
-.empty-state {
-  text-align: center;
-  padding: 2rem;
-}
-
-.empty-state p {
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.empty-state .hint {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
-}
-
 /* ========================================
    RESPONSIVE
    ======================================== */
@@ -284,11 +247,6 @@ textarea {
     min-width: 48px;
     min-height: 48px;
   }
-  .chip,
-  .chip-add {
-    min-height: 44px;
-    padding: 0.6rem 1rem;
-  }
 }
 
 @media (min-width: 768px) {
@@ -328,13 +286,6 @@ textarea {
   }
   .month-nav h2 {
     font-size: 1.5rem;
-  }
-  .cta {
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1.25rem;
-    font-size: 1.15rem;
   }
   .book-row {
     display: grid;
