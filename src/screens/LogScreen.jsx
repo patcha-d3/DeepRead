@@ -326,6 +326,7 @@ export default function LogScreen() {
               variant="primary"
               onClick={handleSave}
               disabled={!isValid}
+              as="a"
             >
               Save Reflection
             </Button>
@@ -335,3 +336,7 @@ export default function LogScreen() {
     </div>
   );
 }
+
+
+{/* <button disabled></button>
+<button></button> */}
