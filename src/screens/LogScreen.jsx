@@ -32,7 +32,7 @@ export default function LogScreen() {
   const [selectedBookId, setSelectedBookId] = useState(bookIdParam || null);
   const [startPage, setStartPage] = useState('');
   const [endPage, setEndPage] = useState('');
-  const [mood, setMood] = useState(null);
+  const [mood, setMood] = useState([]);
   const [reflection, setReflection] = useState('');
   const [quote, setQuote] = useState('');
   const [showAddBook, setShowAddBook] = useState(loc.state?.showAddBook ?? false);

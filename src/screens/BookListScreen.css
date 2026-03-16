@@ -84,8 +84,8 @@
 }
 
 .book-cards-mockup {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 1rem;
   overflow: visible;
   margin-bottom: 1.5rem;
@@ -93,13 +93,6 @@
 
 .book-card-wrap-mockup {
   position: relative;
-  flex: 0 0 calc(50% - 0.5rem);
-}
-
-@media (min-width: 480px) {
-  .book-card-wrap-mockup {
-    flex: 0 0 calc(25% - 0.75rem);
-  }
 }
 
 .book-card-mockup {
@@ -187,13 +180,13 @@
 
 .fab-new-book {
   position: fixed;
-  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
-  right: 1.25rem;
-  right: max(1.25rem, calc(var(--safe-right) + 0.5rem));
+  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
   background: #1a1a1a;
   color: #fff;
   border: none;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;

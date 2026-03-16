@@ -18,7 +18,14 @@ export function aggregateLogs(logs) {
   const quotes = [];
   for (const log of sorted) {
     totalPagesLogged += Math.max(0, (log.endPage || 0) - (log.startPage || 0) + 1);
-    if (log.mood) moodFrequency[log.mood] = (moodFrequency[log.mood] || 0) + 1;
+    if (Array.isArray(log.mood)) {
+      for (const m of log.mood) {
+        if (!m) continue;
+        moodFrequency[m] = (moodFrequency[m] || 0) + 1;
+      }
+    } else if (log.mood) {
+      moodFrequency[log.mood] = (moodFrequency[log.mood] || 0) + 1;
+    }
     if (log.quote?.trim()) quotes.push({ date: log.date, quote: log.quote.trim() });
   }
   return {
