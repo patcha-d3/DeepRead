@@ -21,3 +21,19 @@ section h3 {
   font-size: 1.1rem;
   margin-bottom: 0.75rem;
 }
+
+.book-detail-secondary {
+  background: transparent;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  padding: 1rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.book-detail-secondary:hover:not(:disabled) {
+  background: var(--blue-light);
+}

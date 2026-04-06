@@ -1,76 +1,4 @@
 /* My Books screen */
-.filter-dropdown-wrap {
-  position: relative;
-}
-
-.filter-dropdown-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: #1a1a1a;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: var(--font-heading);
-}
-
-.filter-dropdown-btn:hover {
-  background: #333;
-}
-
-.filter-dropdown-chevron {
-  font-size: 0.6rem;
-  opacity: 0.9;
-}
-
-.filter-dropdown-menu {
-  position: absolute;
-  top: calc(100% + 4px);
-  right: 0;
-  min-width: 180px;
-  background: var(--card);
-  border: 1px solid var(--blue-border);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  list-style: none;
-  margin: 0;
-  padding: 0.35rem;
-  z-index: 20;
-}
-
-.filter-dropdown-menu li {
-  margin: 0;
-  padding: 0;
-}
-
-.filter-dropdown-item {
-  display: block;
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  border: none;
-  border-radius: 8px;
-  background: none;
-  font-size: 0.9rem;
-  font-family: var(--font-body);
-  color: var(--text);
-  text-align: left;
-  cursor: pointer;
-}
-
-.filter-dropdown-item:hover {
-  background: var(--blue-light);
-}
-
-.filter-dropdown-item.active {
-  background: var(--blue-light);
-  font-weight: 600;
-  color: var(--blue);
-}
-
 .main-books {
   padding-bottom: 3rem;
 }
@@ -178,26 +106,17 @@
   color: var(--text-muted);
 }
 
+/* Fixed placement above bottom nav — look from .btn (Button.css) */
 .fab-new-book {
   position: fixed;
   bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
-  color: #fff;
-  border: none;
-  padding: 1rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: var(--font-heading);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 10;
 }
 
-.fab-new-book:hover {
-  background: #333;
+.btn.fab-new-book {
+  margin-top: 0;
 }
 
 .book-row {

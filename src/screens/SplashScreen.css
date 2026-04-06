@@ -42,6 +42,7 @@
 }
 
 .splash-cta {
+  margin-top: 0;
   width: 100%;
   max-width: 320px;
   background: #1a1a1a;

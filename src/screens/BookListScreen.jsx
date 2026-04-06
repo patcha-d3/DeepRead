@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import FilterDropdown from '../components/FilterDropdown';
 import EmptyState from '../components/EmptyState';
 import { PLACEHOLDER_MD } from '../constants';
 import './BookListScreen.css';
@@ -24,21 +25,9 @@ export default function BookListScreen() {
   const nav = useNavigate();
   const [books, setBooks] = useState([]);
   const [filter, setFilter] = useState('all'); // 'all' | 'reading' | 'finished'
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
   const load = useCallback(() => setBooks(getBooks()), []);
   useEffect(() => { load(); }, [load]);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   const reading = books.filter((b) => b.status === 'reading');
   const finished = books.filter((b) => b.status === 'finished');
@@ -55,46 +44,16 @@ export default function BookListScreen() {
     }
   };
 
-  const currentFilterLabel = FILTER_OPTIONS.find((o) => o.value === filter)?.label || 'All books';
-
   return (
     <div className="screen books-screen">
       <header className="journey-header">
         <h1>My<br />Books</h1>
-        <div className="filter-dropdown-wrap" ref={dropdownRef}>
-          <Button
-            type="button"
-            as="button"
-            variant="outline"
-            className="filter-dropdown-btn"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            aria-expanded={dropdownOpen}
-            aria-haspopup="listbox"
-          >
-            {currentFilterLabel}
-            <span className="filter-dropdown-chevron">▼</span>
-          </Button>
-          {dropdownOpen && (
-            <ul className="filter-dropdown-menu" role="listbox">
-              {FILTER_OPTIONS.map((opt) => (
-                <li key={opt.value}>
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={filter === opt.value}
-                    className={`filter-dropdown-item ${filter === opt.value ? 'active' : ''}`}
-                    onClick={() => {
-                      setFilter(opt.value);
-                      setDropdownOpen(false);
-                    }}
-                  >
-                    {opt.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <FilterDropdown
+          options={FILTER_OPTIONS}
+          value={filter}
+          onChange={setFilter}
+          ariaLabel="Filter books by status"
+        />
       </header>
       <main className="main main-books">
         {(filter === 'all' || filter === 'reading') && reading.length > 0 && (
@@ -160,8 +119,6 @@ export default function BookListScreen() {
       </main>
       <Button
         type="button"
-        as="button"
-        variant="primary"
         className="fab-new-book"
         onClick={() => nav('/log', { state: { showAddBook: true, fromBooks: true } })}
         aria-label="Add new book"

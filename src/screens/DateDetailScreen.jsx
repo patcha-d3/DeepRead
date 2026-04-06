@@ -30,10 +30,7 @@ export default function DateDetailScreen() {
       <main className="main">
         {logs.length === 0 ? (
           <EmptyState title="No reading logs for this day.">
-            <Button
-              variant="primary"
-              onClick={() => nav('/log', { state: { date } })}
-            >
+            <Button onClick={() => nav('/log', { state: { date } })}>
               Add reflection
             </Button>
           </EmptyState>

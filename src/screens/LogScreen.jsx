@@ -198,8 +198,6 @@ export default function LogScreen() {
                 </div>
               <Button
                 type="button"
-                as="button"
-                variant="ghost"
                 className="change-book-btn"
                 onClick={() => setSelectedFromSearch(null)}
               >
@@ -214,7 +212,7 @@ export default function LogScreen() {
                 value={newTotalPages}
                 onChange={(e) => setNewTotalPages(e.target.value)}
               />
-              <Button variant="primary" onClick={handleAddBook}>Add Book</Button>
+              <Button onClick={handleAddBook}>Add Book</Button>
             </div>
           )}
           {!selectedFromSearch && (
@@ -240,11 +238,11 @@ export default function LogScreen() {
                 value={newTotalPages}
                 onChange={(e) => setNewTotalPages(e.target.value)}
               />
-              <Button variant="primary" onClick={handleAddBook}>Add Book</Button>
+              <Button onClick={handleAddBook}>Add Book</Button>
             </>
           )}
           <Button
-            variant="ghost"
+            className="log-cancel-btn"
             onClick={() => (loc.state?.fromBooks ? nav('/books') : setShowAddBook(false))}
           >
             Cancel
@@ -322,12 +320,7 @@ export default function LogScreen() {
               placeholder="A memorable quote from your reading..."
               rows={2}
             />
-            <Button
-              variant="primary"
-              onClick={handleSave}
-              disabled={!isValid}
-              as="a"
-            >
+            <Button onClick={handleSave} disabled={!isValid}>
               Save Reflection
             </Button>
           </>
@@ -336,7 +329,3 @@ export default function LogScreen() {
     </div>
   );
 }
-
-
-{/* <button disabled></button>
-<button></button> */}

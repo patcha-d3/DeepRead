@@ -41,13 +41,12 @@ export default function BookDetailScreen() {
         {book.author && <p className="author">by {book.author}</p>}
         <ProgressBar currentPage={getCurrentPageForBook(book.id)} totalPages={book.totalPages} />
         <Button
-          variant="primary"
           onClick={() => nav('/log', { state: { bookId: book.id, date: today } })}
         >
           Add reflection
         </Button>
         <Button
-          variant="outline"
+          className="book-detail-secondary"
           onClick={handleFinish}
         >
           Mark as Finished

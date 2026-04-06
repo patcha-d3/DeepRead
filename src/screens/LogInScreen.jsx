@@ -50,19 +50,11 @@ export default function LogInScreen() {
           By continuing you agree to the <strong>Terms of Use</strong> and <strong>Privacy Policy</strong>
         </p>
 
-        <Button
-          variant="primary"
-          className="login-continue"
-          onClick={handleContinue}
-        >
+        <Button className="login-continue" onClick={handleContinue}>
           Continue
         </Button>
 
-        <Button
-          variant="ghost"
-          className="login-link"
-          type="button"
-        >
+        <Button className="login-link" type="button">
           Reset Password
         </Button>
 

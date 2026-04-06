@@ -14,11 +14,7 @@ export default function SplashScreen() {
           a reflective bookmark & reading journal app synchronized with Kobo
         </p>
       </div>
-      <Button
-        variant="primary"
-        className="splash-cta"
-        onClick={() => nav('/login')}
-      >
+      <Button className="splash-cta" onClick={() => nav('/login')}>
         Sign In
       </Button>
     </div>
